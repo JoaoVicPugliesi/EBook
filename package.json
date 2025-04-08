@@ -1,0 +1,17 @@
+{
+  "name": "ebook",
+  "version": "1.0.0",
+  "description": "Trabalho de modelagem de dados.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "João Pugliesi e João Torres",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}
