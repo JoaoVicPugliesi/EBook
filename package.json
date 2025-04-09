@@ -4,7 +4,7 @@
   "description": "Trabalho de modelagem de dados.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/index.ts"
   },
   "keywords": [],
   "author": "João Pugliesi e João Torres",
@@ -13,5 +13,8 @@
     "@types/node": "^22.14.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "fastify": "^5.2.2"
   }
 }
