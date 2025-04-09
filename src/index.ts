@@ -2,8 +2,10 @@ import { FastifyInstance } from 'fastify';
 import { server } from './server/fastify';
 import { Routes } from './routes/routes';
 import { db } from '../db/db';
+import { Migrations} from '../db/migrations/Migrations';
 
-const routes: Routes = new Routes(server, db);
+const migrations = new Migrations(db);
+const routes: Routes = new Routes(server, migrations);
 
 class Application {
   constructor(private readonly server: FastifyInstance) {}
