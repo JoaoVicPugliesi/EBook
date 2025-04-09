@@ -1,5 +1,9 @@
-import { FastifyInstance } from "fastify";
-import { server } from "./fastify";
+import { FastifyInstance } from 'fastify';
+import { server } from './server/fastify';
+import { Routes } from './routes/routes';
+import { db } from '../db/db';
+
+const routes: Routes = new Routes(server, db);
 
 class Application {
   constructor(private readonly server: FastifyInstance) {}
@@ -8,7 +12,7 @@ class Application {
     try {
       await this.server.listen({
         port: 8000,
-        host: "0.0.0.0",
+        host: '0.0.0.0',
       });
       console.log(`🚀 server is running on http://localhost:8000`);
     } catch (err) {
@@ -20,4 +24,4 @@ class Application {
 
 const application = new Application(server);
 application.run();
-
+routes.setupRoutes();
