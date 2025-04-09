@@ -3,9 +3,11 @@ import { server } from './server/fastify';
 import { Routes } from './routes/routes';
 import { db } from '../db/db';
 import { Migrations} from '../db/migrations/Migrations';
+import { Insert } from '../db/queries/inserts/Insert';
 
 const migrations = new Migrations(db);
-const routes: Routes = new Routes(server, migrations);
+const insert = new Insert(db);
+const routes: Routes = new Routes(server, migrations, insert);
 
 class Application {
   constructor(private readonly server: FastifyInstance) {}
