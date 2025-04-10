@@ -7,6 +7,7 @@ import { Select } from "../../db/queries/selects/Select";
 import { InsertIntoPublishersDTO } from "../../db/queries/inserts/DTOs/insert_into_publishers";
 import { InsertIntoAuthorsDTO } from "../../db/queries/inserts/DTOs/insert_into_authors";
 import { InsertIntoPublishersAuthorsDTO } from "../../db/queries/inserts/DTOs/insert_into_publishers_authors";
+import { InsertIntoBooksDTO } from "../../db/queries/inserts/DTOs/insert_into_books";
 
 export class Routes {
     constructor(
@@ -73,7 +74,7 @@ export class Routes {
             
             return res.status(201).send({ message: 'Author Created' })
         });
-        
+
         this.server.post('/ebook/publishers_authors/insert', async(req: FastifyRequest, res: FastifyReply) => {
             const { pub_id, auth_id } = req.body as InsertIntoPublishersAuthorsDTO;
             await this.insert.insert_into_publishers_authors({ 
@@ -82,6 +83,19 @@ export class Routes {
             });
         
             return res.status(201).send({ message: 'Publishers_Authors Pivot Table Resource Created' })
+        });
+
+        this.server.post('/ebook/books/insert', async(req: FastifyRequest, res: FastifyReply) => {
+            const { book_name, book_desc,subs_id, pub_id, auth_id } = req.body as InsertIntoBooksDTO;
+            await this.insert.insert_into_books({ 
+                book_name,
+                book_desc,
+                subs_id, 
+                pub_id, 
+                auth_id
+            });
+        
+            return res.status(201).send({ message: 'Book Created' })
         });
     }
 }

@@ -25,32 +25,32 @@ export class Migrations {
   }
 
   async create_table_publishers() {
-      await this.db`
-      CREATE TABLE publishers (
-        pub_id SERIAL PRIMARY KEY,
-        pub_name VARCHAR UNIQUE,
-        pub_desc VARCHAR
+    await this.db`
+        CREATE TABLE publishers (
+            pub_id SERIAL PRIMARY KEY,
+            pub_name VARCHAR UNIQUE,
+            pub_desc VARCHAR
         )`;
-    }
-    
-    async create_table_authors() {
-        await this.db`
+  }
+
+  async create_table_authors() {
+    await this.db`
         CREATE TABLE authors (
             auth_id SERIAL PRIMARY KEY,
             auth_name VARCHAR,
             auth_desc VARCHAR
-            )`;
-        }
-        
-        async create_publishers_authors_pivot_table() {
-            await this.db`
-            CREATE TABLE publishers_authors (
-                pub_id INTEGER, 
-                auth_id INTEGER,
+        )`;
+  }
+
+  async create_publishers_authors_pivot_table() {
+    await this.db`
+        CREATE TABLE publishers_authors (
+            pub_id INTEGER, 
+            auth_id INTEGER,
                 
-                PRIMARY KEY (pub_id, auth_id),
-                FOREIGN KEY (pub_id) REFERENCES publishers(pub_id),
-                FOREIGN KEY (auth_id) REFERENCES authors(auth_id)
+            PRIMARY KEY (pub_id, auth_id),
+            FOREIGN KEY (pub_id) REFERENCES publishers(pub_id),
+            FOREIGN KEY (auth_id) REFERENCES authors(auth_id)
         )`;
   }
 
