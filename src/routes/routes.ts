@@ -4,6 +4,7 @@ import { InsertIntoSubscriptionsDTO } from "../../db/queries/inserts/DTOs/insert
 import { Insert } from "../../db/queries/inserts/Insert";
 import { InsertIntoCustomersDTO } from "../../db/queries/inserts/DTOs/insert_into_customers";
 import { Select } from "../../db/queries/selects/Select";
+import { InsertIntoPublishersDTO } from "../../db/queries/inserts/DTOs/insert_into_publishers";
 
 export class Routes {
     constructor(
@@ -51,5 +52,14 @@ export class Routes {
             return res.status(201).send({ message: 'Customer Created' });
         });
 
+        this.server.post('/ebook/publishers/insert', async(req: FastifyRequest, res: FastifyReply) => {
+            const { pub_name, pub_desc } = req.body as InsertIntoPublishersDTO;
+            await this.insert.insert_into_publishers({ 
+                pub_name,
+                pub_desc
+            });
+
+            return res.status(201).send({ message: 'Publisher Created' })
+        });
     }
 }
