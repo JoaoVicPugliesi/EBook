@@ -1,14 +1,14 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { Insert } from "../../db/queries/inserts/Insert";
-import { InsertIntoSubscriptionsDTO } from "../../db/queries/inserts/DTOs/insert/insert_into_subscriptions";
-import { InsertIntoCustomersDTO } from "../../db/queries/inserts/DTOs/insert/insert_into_customers";
+import { InsertIntoSubscriptionsDTO } from "../../db/queries/inserts/DTOs/insert_into_subscriptions";
+import { InsertIntoCustomersDTO } from "../../db/queries/inserts/DTOs/insert_into_customers";
 import { Migrations } from "../../db/migrations/Migrations";
-import { InsertIntoPublishersDTO } from "../../db/queries/inserts/DTOs/insert/insert_into_publishers";
-import { InsertIntoAuthorsDTO } from "../../db/queries/inserts/DTOs/insert/insert_into_authors";
-import { InsertIntoPublishersAuthorsDTO } from "../../db/queries/inserts/DTOs/insert/insert_into_publishers_authors";
-import { InsertIntoBooksDTO } from "../../db/queries/inserts/DTOs/insert/insert_into_books";
-import { InsertIntoGenresDTO } from "../../db/queries/inserts/DTOs/insert/insert_into_genres";
-import { InsertIntoBooksGenresDTO } from "../../db/queries/inserts/DTOs/insert/insert_into_books_genres";
+import { InsertIntoPublishersDTO } from "../../db/queries/inserts/DTOs/insert_into_publishers";
+import { InsertIntoAuthorsDTO } from "../../db/queries/inserts/DTOs/insert_into_authors";
+import { InsertIntoPublishersAuthorsDTO } from "../../db/queries/inserts/DTOs/insert_into_publishers_authors";
+import { InsertIntoBooksDTO } from "../../db/queries/inserts/DTOs/insert_into_books";
+import { InsertIntoGenresDTO } from "../../db/queries/inserts/DTOs/insert_into_genres";
+import { InsertIntoBooksGenresDTO } from "../../db/queries/inserts/DTOs/insert_into_books_genres";
 import { Select } from "../../db/queries/selects/Select";
 
 export class Post {
