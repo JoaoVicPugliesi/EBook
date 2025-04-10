@@ -4,10 +4,12 @@ import { Routes } from './routes/routes';
 import { db } from '../db/db';
 import { Migrations} from '../db/migrations/Migrations';
 import { Insert } from '../db/queries/inserts/Insert';
+import { Select } from '../db/queries/selects/Select';
 
 const migrations = new Migrations(db);
 const insert = new Insert(db);
-const routes: Routes = new Routes(server, migrations, insert);
+const select = new Select(db);
+const routes: Routes = new Routes(server, migrations, insert, select);
 
 class Application {
   constructor(private readonly server: FastifyInstance) {}
