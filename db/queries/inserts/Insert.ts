@@ -1,11 +1,12 @@
 import { NeonQueryFunction } from "@neondatabase/serverless";
-import { InsertIntoSubscriptionsDTO } from "./DTOs/insert_into_subscriptions";
-import { InsertIntoCustomersDTO } from "./DTOs/insert_into_customers";
-import { InsertIntoPublishersDTO } from "./DTOs/insert_into_publishers";
-import { InsertIntoAuthorsDTO } from "./DTOs/insert_into_authors";
-import { InsertIntoPublishersAuthorsDTO } from "./DTOs/insert_into_publishers_authors";
-import { InsertIntoBooksDTO } from "./DTOs/insert_into_books";
-import { InsertIntoGenresDTO } from "./DTOs/insert_into_genres";
+import { InsertIntoSubscriptionsDTO } from "./DTOs/insert/insert_into_subscriptions";
+import { InsertIntoCustomersDTO } from "./DTOs/insert/insert_into_customers";
+import { InsertIntoPublishersDTO } from "./DTOs/insert/insert_into_publishers";
+import { InsertIntoAuthorsDTO } from "./DTOs/insert/insert_into_authors";
+import { InsertIntoPublishersAuthorsDTO } from "./DTOs/insert/insert_into_publishers_authors";
+import { InsertIntoBooksDTO } from "./DTOs/insert/insert_into_books";
+import { InsertIntoGenresDTO } from "./DTOs/insert/insert_into_genres";
+import { InsertIntoBooksGenresDTO } from "./DTOs/insert/insert_into_books_genres";
 
 export class Insert {
     constructor(private readonly db: NeonQueryFunction<false, false>) {}
@@ -56,6 +57,13 @@ export class Insert {
         await this.db`
             INSERT INTO genres (gen_name, gen_desc) 
             VALUES (${gen_name}, ${gen_desc})
+        `;
+    }
+
+    async insert_into_books_genres({ book_id, gen_id } : InsertIntoBooksGenresDTO) {
+        await this.db`
+            INSERT INTO genres (book_id, gen_id) 
+            VALUES (${book_id}, ${gen_id})
         `;
     }
     
