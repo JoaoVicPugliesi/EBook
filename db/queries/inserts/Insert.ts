@@ -2,6 +2,7 @@ import { NeonQueryFunction } from "@neondatabase/serverless";
 import { InsertIntoSubscriptionsDTO } from "./DTOs/insert_into_subscriptions";
 import { InsertIntoCustomersDTO } from "./DTOs/insert_into_customers";
 import { InsertIntoPublishersDTO } from "./DTOs/insert_into_publishers";
+import { InsertIntoAuthorsDTO } from "./DTOs/insert_into_authors";
 
 export class Insert {
     constructor(private readonly db: NeonQueryFunction<false, false>) {}
@@ -24,6 +25,13 @@ export class Insert {
         await this.db`
             INSERT INTO publishers (pub_name, pub_desc) 
             VALUES (${pub_name}, ${pub_desc})
+        `;
+    }
+
+    async insert_into_authors({ auth_name, auth_desc }: InsertIntoAuthorsDTO) {
+        await this.db`
+            INSERT INTO authors (auth_name, auth_desc) 
+            VALUES (${auth_name}, ${auth_desc})
         `;
     }
 }
