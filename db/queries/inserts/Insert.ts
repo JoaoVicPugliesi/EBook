@@ -5,6 +5,7 @@ import { InsertIntoPublishersDTO } from "./DTOs/insert_into_publishers";
 import { InsertIntoAuthorsDTO } from "./DTOs/insert_into_authors";
 import { InsertIntoPublishersAuthorsDTO } from "./DTOs/insert_into_publishers_authors";
 import { InsertIntoBooksDTO } from "./DTOs/insert_into_books";
+import { InsertIntoGenresDTO } from "./DTOs/insert_into_genres";
 
 export class Insert {
     constructor(private readonly db: NeonQueryFunction<false, false>) {}
@@ -48,6 +49,13 @@ export class Insert {
         await this.db`
             INSERT INTO books (book_name, book_desc, subs_id, pub_id, auth_id) 
             VALUES (${book_name}, ${book_desc}, ${subs_id}, ${pub_id}, ${auth_id})
+        `;
+    }
+    
+    async insert_into_genres({ gen_name, gen_desc } : InsertIntoGenresDTO) {
+        await this.db`
+            INSERT INTO genres (gen_name, gen_desc) 
+            VALUES (${gen_name}, ${gen_desc})
         `;
     }
     

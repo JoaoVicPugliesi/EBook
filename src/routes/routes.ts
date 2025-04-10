@@ -8,6 +8,7 @@ import { InsertIntoPublishersDTO } from "../../db/queries/inserts/DTOs/insert_in
 import { InsertIntoAuthorsDTO } from "../../db/queries/inserts/DTOs/insert_into_authors";
 import { InsertIntoPublishersAuthorsDTO } from "../../db/queries/inserts/DTOs/insert_into_publishers_authors";
 import { InsertIntoBooksDTO } from "../../db/queries/inserts/DTOs/insert_into_books";
+import { InsertIntoGenresDTO } from "../../db/queries/inserts/DTOs/insert_into_genres";
 
 export class Routes {
     constructor(
@@ -94,8 +95,18 @@ export class Routes {
                 pub_id, 
                 auth_id
             });
-        
+            
             return res.status(201).send({ message: 'Book Created' })
+        });
+
+        this.server.post('/ebook/genres/insert', async(req: FastifyRequest, res: FastifyReply) => {
+            const { gen_name, gen_desc } = req.body as InsertIntoGenresDTO;
+            await this.insert.insert_into_genres({ 
+                gen_name,
+                gen_desc
+            });
+        
+            return res.status(201).send({ message: 'Genre Created' })
         });
     }
 }
