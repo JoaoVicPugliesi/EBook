@@ -86,7 +86,7 @@ export class Post {
         });
 
         this.server.post('/ebook/books/insert', async(req: FastifyRequest, res: FastifyReply) => {
-            const { book_name, book_desc,subs_id, pub_id, auth_id } = req.body as InsertIntoBooksDTO;
+            const { book_name, book_desc, subs_id, pub_id, auth_id } = req.body as InsertIntoBooksDTO;
             await this.insert.insert_into_books({ 
                 book_name,
                 book_desc,

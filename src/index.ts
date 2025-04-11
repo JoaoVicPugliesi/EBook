@@ -1,24 +1,6 @@
 import { FastifyInstance } from 'fastify';
-import { db } from '../db/db';
-import { Migrations} from '../db/migrations/Migrations';
-import { Insert } from '../db/queries/inserts/Insert';
-import { Select } from '../db/queries/selects/Select';
-import { Routes } from './routes/Routes';
 import { server } from './server/Fastify';
-import { Get } from './routes/Get';
-import { Post } from './routes/Post';
-import { Delete } from './routes/Delete';
-import { Reset } from '../db/migrations/Reset';
-
-
-const migrations = new Migrations(db);
-const insert = new Insert(db);
-const select = new Select(db);
-const reset = new Reset(db);
-const get = new Get(server, select);
-const post = new Post(server, migrations, insert, select);
-const deleted = new Delete(server, reset);
-const routes: Routes = new Routes(get, post, deleted);
+import { routes } from './factory/RoutesFactory';
 
 class Application {
   constructor(private readonly server: FastifyInstance) {}
