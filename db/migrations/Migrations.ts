@@ -20,7 +20,7 @@ export class Migrations {
             customer_name VARCHAR,
             subs_id INTEGER,
 
-            FOREIGN KEY (subs_id) REFERENCES subscriptions(subs_id)
+            FOREIGN KEY (subs_id) REFERENCES subscriptions(subs_id) ON DELETE CASCADE
         )`;
   }
 
@@ -49,8 +49,8 @@ export class Migrations {
             auth_id INTEGER,
                 
             PRIMARY KEY (pub_id, auth_id),
-            FOREIGN KEY (pub_id) REFERENCES publishers(pub_id),
-            FOREIGN KEY (auth_id) REFERENCES authors(auth_id)
+            FOREIGN KEY (pub_id) REFERENCES publishers(pub_id) ON DELETE CASCADE,
+            FOREIGN KEY (auth_id) REFERENCES authors(auth_id) ON DELETE CASCADE
         )`;
   }
 
@@ -64,9 +64,9 @@ export class Migrations {
             pub_id INTEGER,
             auth_id INTEGER,
 
-            FOREIGN KEY  (subs_id) REFERENCES subscriptions(subs_id),
-            FOREIGN KEY  (pub_id) REFERENCES publishers(pub_id),
-            FOREIGN KEY  (auth_id) REFERENCES authors(auth_id)
+            FOREIGN KEY  (subs_id) REFERENCES subscriptions(subs_id) ON DELETE CASCADE,
+            FOREIGN KEY  (pub_id) REFERENCES publishers(pub_id) ON DELETE CASCADE,
+            FOREIGN KEY  (auth_id) REFERENCES authors(auth_id) ON DELETE CASCADE
         )`;
   }
 
@@ -86,8 +86,8 @@ export class Migrations {
             gen_id INTEGER,
 
             PRIMARY KEY (book_id, gen_id),
-            FOREIGN KEY (book_id) REFERENCES books(book_id),
-            FOREIGN KEY (gen_id) REFERENCES genres(gen_id)
+            FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE,
+            FOREIGN KEY (gen_id) REFERENCES genres(gen_id) ON DELETE CASCADE
         )`;
   }
 }
