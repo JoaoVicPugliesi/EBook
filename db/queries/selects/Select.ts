@@ -26,10 +26,12 @@ export class Select {
     `
   }
 
-  async select_book_by_url_param({ param }: SelectBookByUrlParam<number>) {
-    return await this.db`
-      SELECT * FROM books
-      WHERE book_id = ${param} 
-    `
+  async select_book_by_url_param({ reference, param }: SelectBookByUrlParam<number>) {
+    if(reference === 'book_id') return await this.db`SELECT * FROM books WHERE book_id = ${param}`;
+    if(reference === 'subs_id') return await this.db`SELECT * FROM books WHERE subs_id = ${param}`;
+    if(reference === 'pub_id') return await this.db`SELECT * FROM books WHERE pub_id = ${param}`;
+    if(reference === 'auth_id') return await this.db`SELECT * FROM books WHERE auth_id = ${param}`;
+    
+    return [];
   }
 }

@@ -24,6 +24,7 @@ export class Get {
     this.server.get('/ebook/books/:id',  async (req: FastifyRequest, res: FastifyReply) => {
           const { id } = req.params as { id: string };
           const book: Record<string, any>[] = await this.select.select_book_by_url_param({
+            reference: 'auth_id',
             param: +id
           });
 

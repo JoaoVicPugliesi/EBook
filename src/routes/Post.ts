@@ -32,7 +32,6 @@ export class Post {
             res.status(201).send({ message: 'Table created' })
         });
 
-        // Insertions 
         this.server.post('/ebook/subscriptions/insert', async (req: FastifyRequest, res: FastifyReply) => {
             const { plan, price } = req.body as InsertIntoSubscriptionsDTO;
             await this.insert.insert_into_subscriptions({
